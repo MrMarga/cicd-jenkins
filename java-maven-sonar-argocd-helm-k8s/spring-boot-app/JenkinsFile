@@ -33,7 +33,7 @@ pipeline {
      }
       
     stage('Build and Push Docker Image') {
-      environment{DOCKERHUB_CREDENTIALS = credentials('docker')}
+      environment{DOCKERHUB_CREDENTIALS = credentials('docker-cred')}
       script {
             sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build . -t mrmarga/ultimate-cicd && docker tag mrmarga/ultimate-cicd:${BUILD_NUMBER}'
             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
