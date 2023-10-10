@@ -6,6 +6,7 @@ pipeline {
     }
     
   }
+
   stages {
 
     stage('Checkout') {
@@ -23,10 +24,10 @@ pipeline {
       }
     }
 
-     stage('Static Code Analysis')//{
+     stage('Static Code Analysis'){
      // environment {
         SONAR_URL = "http://192.168.100.58:9000"
-      }
+     // }
       steps {
         sh "echo By Passsing"
       //  withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -62,8 +63,8 @@ pipeline {
                 '''
             }
         } 
-    }  
+    }
  }
+}   
 
-}
  
