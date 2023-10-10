@@ -34,7 +34,7 @@ pipeline {
         }
       }
 
-     }
+    // }
       
       stage('Build and Push Docker Image') {
        environment{DOCKERHUB_CREDENTIALS = credentials('docker-cred')}  
@@ -67,4 +67,3 @@ pipeline {
 
 }
  
-
