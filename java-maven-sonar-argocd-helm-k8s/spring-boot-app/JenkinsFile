@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        sh 'echo passed foe the final time..'
+        sh 'echo passed'
         // git branch: 'main', url: 'https://github.com/MrMarga/cicd-jenkins.git'
       }
     }
@@ -44,15 +44,9 @@ pipeline {
             } 
     }
 
-      stage('Update Deployment File') {
+     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "cicd-jenkins"
-            GIT_USER_NAME = "mrmarga"
-        }
-
-         stage('Update Deployment File') {
-        environment {
-            GIT_REPO_NAME = "cicd-jenkins"
+            GIT_REPO_NAME = "ultimate"
             GIT_USER_NAME = "mrmarga"
         }
 
@@ -66,13 +60,12 @@ pipeline {
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml                    
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main 
-                   '''
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                 '''
             }
         } 
     }
  }
-} 
-}
+}   
 
  
