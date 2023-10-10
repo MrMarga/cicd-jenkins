@@ -12,7 +12,7 @@ pipeline {
     stage('Checkout') {
         steps {
           sh 'echo passed Final'
-          // git branch: 'main', url: 'https://github.com/MrMarga/cicd-jenkins.git'
+          git branch: 'main', url: 'https://github.com/MrMarga/cicd-jenkins.git'
         }
     }
 
@@ -48,9 +48,9 @@ pipeline {
               environment {
                   GIT_REPO_NAME = "cicd-jenkins"
                   GIT_USER_NAME = "mrmarga"
-                        }
+                }
 
-            steps {
+        steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "margaghale31@gmail.com"
